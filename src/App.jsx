@@ -1,7 +1,12 @@
+import Navbar from "./components/Navbar";
+import Search from "./components/Search";
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div className="mx-auto max-w-screen-md nt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 
+    h-fit shadow-xl shadow-gray-400">
+      <Navbar />
+      <Search />
+    </div>
   )
 }
