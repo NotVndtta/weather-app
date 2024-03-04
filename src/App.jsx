@@ -1,5 +1,7 @@
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
+import Temperature from "./components/Temperature";
+import TimeAndLocation from "./components/TimeAndLocation";
 
 export default function App() {
   return (
@@ -7,6 +9,8 @@ export default function App() {
     h-fit shadow-xl shadow-gray-400">
       <Navbar />
       <Search />
+      <TimeAndLocation />
+      <Temperature />
     </div>
   )
 }
