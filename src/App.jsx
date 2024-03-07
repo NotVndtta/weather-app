@@ -5,15 +5,22 @@ import { useStateContext } from "./Context"
 import Background from "./components/Background"
 import WeatherCard from "./components/WeatherCard"
 import Card from "./components/Card"
+import Cities from "./components/Cities"
 export default function App() {
 
   const [input,setInput] = useState('')
-  const {weather, thisLocation, values, place, setPlace} = useStateContext()
+  const {weather, thisLocation, values, place, setPlace,savedCities,setSavedCities} = useStateContext()
+  
+
+  const addCityToSaved = (city) => {
+    setSavedCities((prevCities) => [...prevCities, city]);
+  };
 
   const submitCity = () =>
   {
     setPlace(input)
     setInput('')
+    addCityToSaved(input);
   }
 
  
@@ -63,6 +70,7 @@ export default function App() {
             })
           }
       </div>
+          <Cities />
           </main>
     </div>
   )

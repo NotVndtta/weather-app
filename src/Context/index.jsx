@@ -12,6 +12,8 @@ export const StateContextProvider = ({children}) => {
 
     const [thisLocation, setLocation] = useState('')
 
+    const [savedCities, setSavedCities] = useState([]);
+
    
     const fetchWeather = async() => {
        
@@ -63,7 +65,9 @@ export const StateContextProvider = ({children}) => {
         setPlace,
         values,
         thisLocation,
-        place
+        place,
+        savedCities,
+        setSavedCities
      }}>
         {children}
      </StateContext.Provider> 
