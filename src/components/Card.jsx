@@ -10,24 +10,33 @@ import wind from '../assets/icons/windy.png'
 
 const Card = ({time, temp, iconString}) => {
     const [icon, setIcon] = useState()
+    const [weatherCondition, setWeatherCondition] = useState('')
     useEffect(() => {
-        if (iconString) {
-            if (iconString.toLowerCase().includes('cloud')) {
-              setIcon(cloud)
-            } else if (iconString.toLowerCase().includes('rain')) {
-              setIcon(rain)
-            } else if (iconString.toLowerCase().includes('clear')) {
-              setIcon(sun)
-            } else if (iconString.toLowerCase().includes('thunder')) {
-              setIcon(storm)
-            } else if (iconString.toLowerCase().includes('fog')) {
-              setIcon(fog)
-            } else if (iconString.toLowerCase().includes('snow')) {
-              setIcon(snow)
-            } else if (iconString.toLowerCase().includes('wind')) {
-              setIcon(wind)
-            }
-          }
+      console.log('iconString:', iconString);
+      if (iconString) {
+        if (iconString.toLowerCase().includes('cloud')) {
+          setIcon(cloud)
+          setWeatherCondition('Облачно') // обновляем состояние
+        } else if (iconString.toLowerCase().includes('rain')) {
+          setIcon(rain)
+          setWeatherCondition('Дождь')
+        } else if (iconString.toLowerCase().includes('clear')) {
+          setIcon(sun)
+          setWeatherCondition('Ясно')
+        } else if (iconString.toLowerCase().includes('overcast')) {
+          setIcon(storm)
+          setWeatherCondition('Гроза')
+        } else if (iconString.toLowerCase().includes('fog')) {
+          setIcon(fog)
+          setWeatherCondition('Туман')
+        } else if (iconString.toLowerCase().includes('snow')) {
+          setIcon(snow)
+          setWeatherCondition('Снег')
+        } else if (iconString.toLowerCase().includes('wind')) {
+          setIcon(wind)
+          setWeatherCondition('Ветрено')
+        }
+      }
     }, [iconString])
   return (
     <div className='glassCard w-[10rem] h-[10rem] p-4 flex flex-col '>
@@ -37,6 +46,7 @@ const Card = ({time, temp, iconString}) => {
         <hr />
         <div className="w-full flex justify-center items-center flex-1">
             <img src={icon} alt="weather" className='w-[4rem] h-[4rem]' />
+            <p className="text-lg">{weatherCondition}</p> 
         </div>
         <p className="text-center font-bold">{temp}&deg;C</p>      
     </div>

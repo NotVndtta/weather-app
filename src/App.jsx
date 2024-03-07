@@ -41,19 +41,18 @@ export default function App() {
           place={thisLocation}
           windspeed={weather.wspd}
           humidity={weather.humidity}
-          temperature={weather.temperature}
-          heatIndex={weather.heatIndex}
+          temperature={weather.temp}
+          heatIndex={weather.heatindex}
           iconString={weather.conditions}
           conditions={weather.conditions}
 
         />
-      </main>
       <div className="flex justify-center gap-8 flex-wrap w-[60%]">
         {
-
+          
           values?.slice(1,7).map(curr => {
             return (
-
+              
               <Card 
               key={curr.datetime}
               time={curr.datetime}
@@ -61,9 +60,10 @@ export default function App() {
               iconString={curr.conditions}
               />
               )
-          })
-        }
+            })
+          }
       </div>
+          </main>
     </div>
   )
 }

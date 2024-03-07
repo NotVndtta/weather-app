@@ -8,7 +8,7 @@ export const StateContextProvider = ({children}) => {
 
     const [values, setValues] = useState([])
 
-    const [place, setPlace] = useState('Jaipur')
+    const [place, setPlace] = useState('Sevastopol')
 
     const [thisLocation, setLocation] = useState('')
 

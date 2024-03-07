@@ -19,7 +19,7 @@ const WeatherCard = ({
     iconString,
     conditions,
 }) => {
-    const [icon, setIcon] = useState(sun)
+    const [icon, setIcon] = useState()
     const {time} = useDate()
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const WeatherCard = ({
             setIcon(rain)
           } else if (iconString.toLowerCase().includes('clear')) {
             setIcon(sun)
-          } else if (iconString.toLowerCase().includes('thunder')) {
+          } else if (iconString.toLowerCase().includes('overcast')) {
             setIcon(storm)
           } else if (iconString.toLowerCase().includes('fog')) {
             setIcon(fog)
@@ -43,7 +43,7 @@ const WeatherCard = ({
       }, [iconString])
 
   return (
-    <div className='w-[22rem] min-w-[22rem] h-[30rem] glassCard p-4'>
+    <div className='w-[22rem] min-w-[22rem]  glassCard p-4'>
       <div className="flex w-full justify-center items-center gap-4 mt-12 mb-4">
         <img src={icon} alt="weather-icon" />
         <p className="font-bold text-5xl flex justify-center items-center ">{temperature} &deg;C</p>
