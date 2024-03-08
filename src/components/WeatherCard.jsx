@@ -10,7 +10,11 @@ import snow from '../assets/icons/snow.png'
 import storm from '../assets/icons/storm.png'
 import wind from '../assets/icons/windy.png'
 import overcast from '../assets/icons/overcast.png'
+import favorite from '../assets/icons/favorite.png'
+import favoriteFill from '../assets/icons/favorite_fill.png'
 
+
+ 
 const WeatherCard = ({
     temperature,
     windspeed,
@@ -19,9 +23,13 @@ const WeatherCard = ({
     heatIndex,
     iconString,
     conditions,
+    saveCity,
+    isSaved,
+    savedCities
 }) => {
     const [icon, setIcon] = useState()
     const {time} = useDate()
+    
 
     useEffect(() => {
         if (iconString) {
@@ -45,7 +53,10 @@ const WeatherCard = ({
 
   return (
     <div className='w-[22rem] min-w-[22rem]  glassCard p-4'>
-      <div className="flex w-full justify-center items-center gap-4 mt-12 mb-4">
+      <button onClick={saveCity} className="flex text-right">
+      <img src={isSaved ? favoriteFill : favorite} alt="Save city" className='w-10 h-10' />
+      </button>
+      <div className="flex w-full justify-center items-center gap-4 mt-4 mb-4">
         <img src={icon} alt="weather-icon" className='w-[150px] h-[150px]' />
         <p className="font-bold text-5xl flex justify-center items-center ">{temperature} &deg;C</p>
       </div>
