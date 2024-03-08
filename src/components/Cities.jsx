@@ -1,24 +1,38 @@
 import React from 'react'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useStateContext } from "../Context"
 import { useNavigate } from "react-router-dom";
 
 const Cities = () => {
-    const { savedCities, setPlace } = useStateContext();
+    const { savedCities, setSavedCities, setPlace } = useStateContext();
     const navigate = useNavigate();
+
+    // Загрузить сохраненные города из Local Storage при инициализации
+    useEffect(() => {
+        const loadedCities = localStorage.getItem("savedCities");
+        if (loadedCities) {
+            setSavedCities(JSON.parse(loadedCities));
+        }
+    }, []);
+
     const handleCityClick = (city) => {
         setPlace(city);
         navigate('/');
     }
 
-  return (
-    <div>
-      <h1>Cities</h1>
-      {savedCities.map((city) => (
-        <div key={city} onClick={() => handleCityClick(city)} className='cursor-pointer'>{city}</div>
-      ))}
-    </div>
-  )
+    return (
+        <div className="flex justify-center items-center">
+            <div className='w-[22rem] min-w-[22rem] glassCard p-4 '>
+                <h1 className="font-bold text-5xl flex justify-center items-center">Cities</h1>
+                {savedCities.map((city) => (
+                    <div key={city.name} onClick={() => handleCityClick(city.name)} className='cursor-pointer w-full p-3 mt-4 flex justify-between items-center'>
+                        <p className='font-semibold text-lg'>{city.name}</p>
+                    </div>
+                ))}
+                <hr className='bg-slate-600' />
+            </div>
+        </div>
+    )
 }
 
 export default Cities

@@ -25,7 +25,7 @@ const WeatherCard = ({
     conditions,
     saveCity,
     isSaved,
-    savedCities
+  
 }) => {
     const [icon, setIcon] = useState()
     const {time} = useDate()

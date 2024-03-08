@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './App.css'
 import search from './assets/icons/search.svg'
 import { useStateContext } from "./Context"
@@ -15,16 +15,27 @@ export default function App() {
   const {weather, thisLocation, values, place, setPlace,savedCities,setSavedCities} = useStateContext()
   const [isSaved, setIsSaved] = useState(false);
   
+  
 
   const addCityToSaved = (city) => {
-    if (!savedCities.includes(city)) {
-      setSavedCities((prevCities) => [...prevCities, city]);
+    if (!savedCities.some(savedCity => savedCity.name === city)) {
+      const updatedCities = [...savedCities, { name: city, isSaved: true }];
+      setSavedCities(updatedCities);
+      localStorage.setItem("savedCities", JSON.stringify(updatedCities));
     }
   };
 
   const removeCityFromSaved = (cityToRemove) => {
-    setSavedCities((prevCities) => prevCities.filter(city => city !== cityToRemove));
+    const updatedCities = savedCities.filter(city => city.name !== cityToRemove);
+    setSavedCities(updatedCities);
+    localStorage.setItem("savedCities", JSON.stringify(updatedCities));
   };
+  useEffect(() => {
+    const savedCitiesFromStorage = localStorage.getItem("savedCities");
+    if (savedCitiesFromStorage) {
+      setSavedCities(JSON.parse(savedCitiesFromStorage));
+    }
+  }, []);
 
   const submitCity = () =>
   {
