@@ -25,7 +25,7 @@ const WeatherCard = ({
     conditions,
     saveCity,
     isSaved,
-  
+    savedCities
 }) => {
     const [icon, setIcon] = useState()
     const {time} = useDate()
@@ -53,9 +53,10 @@ const WeatherCard = ({
 
   return (
     <div className='w-[22rem] min-w-[22rem]  glassCard p-4'>
-      <button onClick={saveCity} className="flex text-right">
-      <img src={isSaved ? favoriteFill : favorite} alt="Save city" className='w-10 h-10' />
+      <button onClick={saveCity} className="flex text-right border p-2 border-r-white rounded-lg">
+        Add City
       </button>
+
       <div className="flex w-full justify-center items-center gap-4 mt-4 mb-4">
         <img src={icon} alt="weather-icon" className='w-[150px] h-[150px]' />
         <p className="font-bold text-5xl flex justify-center items-center ">{temperature} &deg;C</p>
