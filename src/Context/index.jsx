@@ -14,6 +14,25 @@ export const StateContextProvider = ({children}) => {
 
     const [savedCities, setSavedCities] = useState([]);
 
+    
+
+    const fetchUserLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const { latitude, longitude } = position.coords;
+                setPlace(`${latitude},${longitude}`);
+            }, (error) => {
+                console.error(error);
+            });
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+        }
+    }
+
+    useEffect(() => {
+        fetchUserLocation();
+    }, []);
+
    
     const fetchWeather = async() => {
        
@@ -38,11 +57,16 @@ export const StateContextProvider = ({children}) => {
         const response = await axios.request(options);
         console.log(response.data)
         const thisData = Object.values(response.data.locations)[0]
-        setLocation(thisData.address)
+        if (place.includes(',')) {
+            setLocation('Your location');
+        } else {
+            setLocation(thisData.address);
+        }
 
         setValues(thisData.values)
 
         setWeather(thisData.values[0])
+        
 
     } catch(e) {
         console.error(e);
@@ -67,7 +91,8 @@ export const StateContextProvider = ({children}) => {
         thisLocation,
         place,
         savedCities,
-        setSavedCities
+        setSavedCities,
+        fetchUserLocation 
      }}>
         {children}
      </StateContext.Provider> 

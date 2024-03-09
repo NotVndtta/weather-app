@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 export default function App() {
 
   const [input,setInput] = useState('')
-  const {weather, thisLocation, values, place, setPlace,savedCities,setSavedCities} = useStateContext()
+  const {weather, thisLocation, values, place, setPlace,savedCities,setSavedCities,fetchUserLocation} = useStateContext()
   const [isSaved, setIsSaved] = useState(false);
   
   
@@ -91,6 +91,7 @@ export default function App() {
           isSaved={isSaved}
           savedCities={savedCities}
           setIsSaved={setIsSaved}
+          fetchUserLocation={fetchUserLocation}
         />
       <div className="flex justify-center gap-8 flex-wrap w-[60%]">
         {
