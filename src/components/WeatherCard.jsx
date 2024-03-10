@@ -10,8 +10,7 @@ import snow from '../assets/icons/snow.png'
 import storm from '../assets/icons/storm.png'
 import wind from '../assets/icons/windy.png'
 import overcast from '../assets/icons/overcast.png'
-import favorite from '../assets/icons/favorite.png'
-import favoriteFill from '../assets/icons/favorite_fill.png'
+import location from '../assets/icons/location-point-white.svg'
 
 
  
@@ -56,10 +55,15 @@ const WeatherCard = ({
 
   return (
     <div className='w-[22rem] min-w-[22rem]  glassCard p-4'>
-      <button onClick={saveCity} className="flex text-right border p-2 border-r-white rounded-lg">
+      <div className="flex justify-between">
+      <button onClick={saveCity} className="flex text-right border p-2 border-r-white rounded-lg
+      transition-opacity duration-200 hover:opacity-90 transform active:scale-90">
         Add City
       </button>
-      <button onClick={fetchUserLocation}>Real city</button>
+      <button onClick={fetchUserLocation} className='transform active:scale-90'>
+        <img src={location} alt="location-icon" className='w-9 h-9' />
+      </button>
+      </div>
 
       <div className="flex w-full justify-center items-center gap-4 mt-4 mb-4">
         <img src={icon} alt="weather-icon" className='w-[150px] h-[150px]' />

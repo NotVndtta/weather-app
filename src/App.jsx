@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react"
 import './App.css'
-import search from './assets/icons/search.svg'
+
 import { useStateContext } from "./Context"
 import Background from "./components/Background"
 import WeatherCard from "./components/WeatherCard"
 import Card from "./components/Card"
 import Cities from "./components/Cities"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Link } from 'react-router-dom';
+
+import NavBar from "./components/NavBar"
 
 export default function App() {
 
@@ -43,10 +44,7 @@ export default function App() {
     setInput('')
   }
   const saveCity = () => {
-    if (isSaved) {
-    // Если город уже сохранен, удаляем его
-    removeCityFromSaved(place);
-  } else {
+    if (!isSaved) {
     // Если город еще не сохранен, добавляем его
     addCityToSaved(place);
   }
@@ -56,24 +54,12 @@ export default function App() {
 
  
   return (
-    <BrowserRouter basename="/weather-app">
+    <BrowserRouter basename="/weather-app/">
     <div className="w-full h-screen text-white">
-      <nav className="w-full p-3 flex justify-between items-center">
-        <Link to='/' className="font-bold tracking-wide text-3xl">Weather</Link>
-        <Link to='/cities'>Cities</Link>
-        <div className="bg-white w-[15rem] overflow-hidden shadow-2xl rounded flex items-center p-2 gap-2">
-        <img src={search} alt="search icon" className='w-[1.5rem] h-[1.5rem]' />
-        <input onKeyUp={(e) => {
-          if (e.key === 'Enter') {
-            // sumit the form
-              submitCity()
-            }
-          }} type="text" placeholder='Search city' 
-          className='focus:outline-none w-full text-[#212121] text-lg' 
-          value={input} 
-          onChange={e => setInput(e.target.value)} />
-        </div>
-      </nav>
+      <NavBar
+      input={input} 
+      setInput={setInput} 
+      submitCity={submitCity} />
       <Background />
        
           <Routes>

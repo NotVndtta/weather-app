@@ -28,7 +28,7 @@ const Cities = () => {
   }
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center my-10">
             <div className='w-[22rem] min-w-[22rem] glassCard p-4 '>
                 <h1 className="font-bold text-5xl flex justify-center items-center">Cities</h1>
                 {savedCities.map((city) => (
