@@ -29,7 +29,23 @@ const WeatherCard = ({
 }) => {
     const [icon, setIcon] = useState()
     const {time} = useDate()
-    
+    const [showMenu, setShowMenu] = useState(false)
+    const [showHeatIndex, setShowHeatIndex] = useState(false)
+    const [tempShowHeatIndex, setTempShowHeatIndex] = useState(false)
+
+    const handleCheckboxChange = (event) => {
+      setTempShowHeatIndex(event.target.checked);
+      if (!event.target.checked) {
+        setShowHeatIndex(false);
+      }
+    };
+
+    const handleDoneClick = () => {
+      if(tempShowHeatIndex){
+        setShowHeatIndex(tempShowHeatIndex);
+      }
+      setShowMenu(false);
+    };
 
     useEffect(() => {
         if (iconString) {
@@ -81,9 +97,23 @@ const WeatherCard = ({
         <p className='flex-1 text-center p-2 font-bold rounded-lg bg-green-600'>Humidity <p className='font-normal'>{humidity} gm/m&#179;</p></p>
       </div>
       <div className='w-full p-3 mt-4 flex justify-between items-center'>
-        <p className='font-semibold text-lg'>Heat Index</p>
-        <p className='text-lg'>{heatIndex ? heatIndex : 'N/A'}</p>
+        <button onClick={() => setShowMenu(!showMenu)}>Показать дополнительно</button>
       </div>
+      {showMenu && (
+      <div>
+        <input type="checkbox" id="heatIndex" name="heatIndex"
+        checked={tempShowHeatIndex} onChange={handleCheckboxChange} />
+        <label htmlFor="heatIndex">Показать Heat Index</label>
+        <br />
+        <button onClick={handleDoneClick}>Готово</button>
+       
+      </div>
+    )}
+    {showHeatIndex && (
+      <div className='mt-4'>
+        <p>Heat Index: {heatIndex ? heatIndex : 'N/A'}</p>
+      </div>
+    )}
       <hr className='bg-slate-600' />
       <div className='w-full p-4 flex justify-center items-center text-3xl font-semibold'>
         {conditions}
