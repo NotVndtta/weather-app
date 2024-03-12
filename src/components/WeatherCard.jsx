@@ -93,24 +93,24 @@ const WeatherCard = ({
         <p className='flex-1 text-center p-2'>{time}</p>
       </div>
       <div className='w-full flex justify-between items-center mt-4 gap-4'>
-        <p className='flex-1 text-center p-2 font-bold bg-blue-600 shadow rounded-lg'>Wind Speed <p className='font-normal'>{windspeed} km/h</p></p>
-        <p className='flex-1 text-center p-2 font-bold rounded-lg bg-green-600'>Humidity <p className='font-normal'>{humidity} gm/m&#179;</p></p>
+        <p className='flex-1 text-center p-2 font-bold bg-blue-600 shadow rounded-lg'>Wind Speed <span className='font-normal'>{windspeed} km/h</span></p>
+        <p className='flex-1 text-center p-2 font-bold rounded-lg bg-green-600'>Humidity <span className='font-normal'>{humidity} gm/m&#179;</span></p>
       </div>
       <div className='w-full p-3 mt-4 flex justify-between items-center'>
-        <button onClick={() => setShowMenu(!showMenu)}>Показать дополнительно</button>
+        <button onClick={() => setShowMenu(!showMenu)}>More settings</button>
       </div>
       {showMenu && (
-      <div>
+      <div className='p-3'>
         <input type="checkbox" id="heatIndex" name="heatIndex"
         checked={tempShowHeatIndex} onChange={handleCheckboxChange} />
-        <label htmlFor="heatIndex">Показать Heat Index</label>
+        <label htmlFor="heatIndex">Show Heat index</label>
         <br />
-        <button onClick={handleDoneClick}>Готово</button>
+        <button onClick={handleDoneClick}>Submit</button>
        
       </div>
     )}
     {showHeatIndex && (
-      <div className='mt-4'>
+      <div className='mt-1 p-3'>
         <p>Heat Index: {heatIndex ? heatIndex : 'N/A'}</p>
       </div>
     )}
