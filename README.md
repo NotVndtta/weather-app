@@ -1,5 +1,6 @@
 # Прогноз погоды
 Использовано: React + Vite, tailwind css
+
 Деплой версия: [Demo](https://notvndtta.github.io/weather-app/) 
 
 Команды:
