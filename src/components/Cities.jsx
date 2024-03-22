@@ -38,7 +38,8 @@ const Cities = () => {
                 <input type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Search saved cities" 
                 className='focus:outline-none text-black mt-5 mx-2 rounded-sm w-[50%] py-1 px-1'/>
                 {savedCities.filter(city => city.name.toLowerCase().includes(searchTerm.toLowerCase())).map((city) => (
-                    <div key={city.name} onClick={() => handleCityClick(city.name)} className='cursor-pointer w-full p-3 mt-4 flex justify-between items-center'>
+                    <div key={city.name} onClick={() => handleCityClick(city.name)} 
+                    className='cursor-pointer w-full p-3 mt-4 flex justify-between items-center'>
                         <p className='font-semibold text-lg'>{city.name}</p>
                         <button onClick={(event) => handleDeleteCity(event, city.name)}>Delete</button>
                     </div>
